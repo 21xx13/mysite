@@ -6,6 +6,16 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <meta charset="utf-8">
     <title>Title </title>
+    <script>
+      async function callClick(){
+        let response = await fetch('http://localhost:8000/click/',{
+          method: 'GET'
+        });
+        let answer = await response.json();
+        document.getElementById("data").innerHTML = answer;
+      }
+    
+      </script>
   </head>
   <body>
       <header><h3> Welcome, {{user.username}}! </h3>
@@ -13,17 +23,8 @@
       </header>
      <main>
       <div align='center'>
-        You can create you notebooks
-        {% for note in notes_list %}
-          <h2>{{note.title}}</h2>
-          <p>{{note.text}}</p>
-          
-        {% endfor %}
-      <form method="post">
-      {%csrf_token%}
-      {{form_note.as_p}}
-      <input type="submit" value="Create!">
-      </form>
+        <h3>You have <div id="data">{{mainCycle.coinsCount}}</div> coins </h3>
+        <button onclick="callClick()" ><h3>Click me </h3></button>
       </div>
       
     </main>

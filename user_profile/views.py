@@ -1,8 +1,9 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
+from django.http import HttpResponse
 from .forms import UserForm, NoteForm
-from .models import Note
+from .models import MainCycle
 from .serializers import UserSerializer, UserSerializerDetail
 from rest_framework import generics
 
@@ -14,20 +15,20 @@ class UserDetail(generics.RetrieveAPIView):
     queryset = User.objects.all()
     serializer_class = UserSerializerDetail
     
+def callClick(request):
+    user = User.objects.filter(id=request.user.id)
+    mainCycle = MainCycle.objects.filter(user=request.user)[0]
+    mainCycle.Click()
+    mainCycle.save()
+    return HttpResponse(mainCycle.coinsCount)
+
 
 def index(request):
     user = User.objects.filter(id=request.user.id)
     
     if len(user) != 0:
-        notes_list = Note.objects.filter(author = user[0].username)
-        form = NoteForm(request.POST)
-        if form.is_valid():
-            title = form.cleaned_data['title']
-            text = form.cleaned_data['text']
-            Note.objects.create(title=title, text=text, author = user[0].username)
-        else: 
-            form = NoteForm()
-        return render(request, 'index.html', {'user':user[0], 'form_note': form, 'notes_list': notes_list})
+        mainCycle = MainCycle.objects.filter(user=request.user)[0]  
+        return render(request, 'index.html', {'user':user[0], 'mainCycle':mainCycle})
     else:
         return redirect('login')
 
@@ -54,17 +55,16 @@ def user_registration(request):
     if request.method == "POST":
         form = UserForm(request.POST)
         if form.is_valid():
-            username = form.cleaned_data['username']
-            existing_user = User.objects.filter(username=username)
-            if len(existing_user) == 0:
-                password = form.cleaned_data['password']
-                user = User.objects.create_user(username, '', password)
-                user.save()
-                user = authenticate(request, username=username, password=password)
-                login(request, user)
-                return redirect('index')
-            else:
-                return render(request, 'registration.html', {'invalid':True, 'form': form})
+            user = form.save()
+            mainCycle = MainCycle()
+            mainCycle.user = user
+            mainCycle.save()
+            user = authenticate(request, username=request.POST['username'], password=request.POST['password'])
+            login(request, user)
+            return redirect('index')
+            
+        else:
+            return render(request, 'registration.html', {'invalid':True, 'form': form})
     else:
         form = UserForm()
         return render(request, 'registration.html', {'invalid':False, 'form': form})

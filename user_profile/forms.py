@@ -1,5 +1,6 @@
 from django import forms
 from .models import UserData, Note
+from django.contrib.auth.models import User
 
 
 class UserForm(forms.ModelForm):
@@ -8,6 +9,14 @@ class UserForm(forms.ModelForm):
     class Meta:
         model = UserData
         fields = ['username', 'password']
+
+    def save(self, commit=True):
+        username = self.cleaned_data['username']
+        password = self.cleaned_data['password']
+        user = User.objects.create_user(username, '', password)
+        if commit:
+            user.save()
+        return user    
 
 class NoteForm(forms.ModelForm):
     class Meta:

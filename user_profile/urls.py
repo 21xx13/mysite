@@ -8,4 +8,5 @@ urlpatterns = [
     path('registration/', views.user_registration, name="registration"),
     path('users/', views.UserList.as_view()),
     path('users/<int:pk>/', views.UserDetail.as_view()),
+    path('click/', views.callClick, name="click"),
 ]
