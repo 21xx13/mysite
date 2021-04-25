@@ -152,3 +152,7 @@ Thumbs.db
 
 # profiling data
 .prof
+myvenv/Lib/site-packages/asgiref/__init__.py
+myvenv/Lib/site-packages/asgiref/compatibility.py
+myvenv/Lib/site-packages/asgiref/local.py
+.gitignore
