@@ -2,29 +2,22 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
   <head>
+    <script src="{% static 'js/index.js' %}"></script>
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <meta charset="utf-8">
     <title>Title </title>
-    <script>
-      async function callClick(){
-        let response = await fetch('http://localhost:8000/click/',{
-          method: 'GET'
-        });
-        let answer = await response.json();
-        document.getElementById("data").innerHTML = answer;
-      }
-    
-      </script>
   </head>
-  <body>
-      <header><h3> Welcome, {{user.username}}! </h3>
+  <body onload="getUser({{user.id}})">
+      <header><h3> Welcome, <div id="user">%user%</div></h3>
       <div class="logout"><a href="/logout">LOGOUT</a></div> 
       </header>
      <main>
       <div align='center'>
-        <h3>You have <div id="data">{{mainCycle.coinsCount}}</div> coins </h3>
-        <button onclick="callClick()" ><h3>Click me </h3></button>
+        <h3>You have <div id="data">%coins%</div> coins </h3>
+        <h3>Your power is {{mainCycle.clickPower}}</h3>
+        <input type="image" class="catgirl" src="{% static 'images/cat.png' %}" onclick="callClick()" height="300"/>
+        <input type="image" class="catgirl boost" src="{% static 'images/boost.jpg' %}" onclick="buyBoost()" height="150"/>
       </div>
       
     </main>

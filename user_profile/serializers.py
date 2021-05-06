@@ -1,22 +1,22 @@
 from rest_framework import serializers
-from .models import UserData, MainCycle
+from .models import User, MainCycle
 
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
-        model = UserData
+        model = User
         fields = ['id']
 
 class UserSerializerDetail(serializers.ModelSerializer):
     class Meta:
-        model = UserData
-        fields = ['id', 'username', 'password']   
+        model = User
+        fields = ['id', 'username', 'cycle']
 
 class CycleSerializer(serializers.ModelSerializer):
     class Meta:
         model = MainCycle
-        fields = ['id']  
+        fields = ['id']
 
 class CycleSerializerDetail(serializers.ModelSerializer):
     class Meta:
         model = MainCycle
-        fields = ['id', 'user', 'coinsCount', 'clickPower']                      
+        fields = ['id', 'user', 'coinsCount', 'clickPower', 'boost']                  

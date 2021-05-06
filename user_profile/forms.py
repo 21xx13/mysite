@@ -1,5 +1,5 @@
 from django import forms
-from .models import UserData, Note
+from .models import User
 from django.contrib.auth.models import User
 
 
@@ -7,7 +7,7 @@ class UserForm(forms.ModelForm):
     username = forms.CharField(widget=forms.TextInput(attrs={'placeholder': 'Username'}))
     password = forms.CharField(widget=forms.PasswordInput(attrs={'placeholder': 'Password'}))
     class Meta:
-        model = UserData
+        model = User
         fields = ['username', 'password']
 
     def save(self, commit=True):
@@ -18,9 +18,5 @@ class UserForm(forms.ModelForm):
             user.save()
         return user    
 
-class NoteForm(forms.ModelForm):
-    class Meta:
-        model = Note
-        fields = ['title', 'text']   
 
         

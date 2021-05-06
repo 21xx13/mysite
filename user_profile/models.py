@@ -4,19 +4,19 @@ from django.contrib.auth.models import User
 # Create your models here.
 
 class MainCycle(models.Model):
-    user = models.OneToOneField(User, null=False, on_delete=models.CASCADE)
+    user = models.OneToOneField(User, related_name='cycle', null=False, on_delete=models.CASCADE)
     coinsCount = models.IntegerField(default=0)
     clickPower = models.IntegerField(default=1)
     def Click(self):
         self.coinsCount += self.clickPower
 
+class Boost(models.Model):
+    mainCycle = models.ForeignKey(MainCycle, related_name='boost', null=False, on_delete=models.CASCADE)
+    power = models.IntegerField(default=1)
+    price = models.IntegerField(default=10)
 
-class UserData(models.Model):
-    username = models.CharField(max_length=70)
-    password = models.CharField(max_length=100)
-
-class Note(models.Model):
-    author = models.CharField(max_length=200)
-    title = models.CharField(max_length=200)
-    text = models.TextField()
-
+    def Upgrade(self):
+        self.mainCycle.clickPower += self.power
+        self.mainCycle.coinsCount -= self.price
+        self.power *= 2
+        self.price *= 2
