@@ -38,11 +38,12 @@ h3{
     height: 450px;
     padding-top: 35px;
     transition: 0.3s;
-    opacity: 0.85;
+    opacity: 0.75;
 }
 
 .click-area input:hover{
     transform: scale(1.05);
+    opacity: 0.85;
 }
 
 .click-area input:active{
@@ -61,8 +62,7 @@ h3{
     background-size: cover;
 }
 .user-data-detail{
-    text-align: center;
-    
+    text-align: center;  
     font-size: 20px;   
 }
 #data, #clickPower{
@@ -115,5 +115,9 @@ h3{
     display: flex;
     justify-content: space-between;
     border-top: 2px solid  rgb(199, 199, 199);
+}
+
+.boosts-list li:hover{
+    background-color: rgba(255, 255, 255, 0.438);
 }
 

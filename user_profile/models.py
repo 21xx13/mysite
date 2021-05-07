@@ -12,13 +12,24 @@ class MainCycle(models.Model):
 
 class Boost(models.Model):
     mainCycle = models.ForeignKey(MainCycle, related_name='boost', null=False, on_delete=models.CASCADE)
-    power = models.IntegerField(default=1)
-    level = models.IntegerField(default=1)
+    power = models.IntegerField(default=3)
+    level = models.IntegerField(default=0)
     price = models.IntegerField(default=10)
 
     def Upgrade(self):
-        self.power = 3
-        self.mainCycle.clickPower += self.power
-        self.mainCycle.coinsCount -= self.price
-        self.price += 20
-        self.level += 1
+        self.level += 1 
+        self.mainCycle.coinsCount -= self.price 
+        self.mainCycle.clickPower += self.power      
+        if self.level < 3:
+            self.power = 3
+            self.price *= 5
+        elif 2 < self.level < 5:
+            self.power = 5
+            self.price *= 4
+        else: 
+            self.power += 2
+            self.price += 1000  
+        
+        
+              
+        

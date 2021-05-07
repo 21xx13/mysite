@@ -26,6 +26,7 @@ async function getUser(id){
     if (dataBoost['level'] > 0) {
       document.getElementById("level").innerHTML = dataBoost['level'];
       document.getElementById("price").innerHTML = dataBoost['price'];
+      document.getElementById("power").innerHTML = dataBoost['power'];
     } 
   }
 }
@@ -71,6 +72,7 @@ async function buyBoost(id){
   let newBoost = await updateBoost.json();
   document.getElementById("level").innerHTML = newBoost['level'];
   document.getElementById("price").innerHTML = newBoost['price'];
+  document.getElementById("power").innerHTML = newBoost['power'];
 }
 
 
