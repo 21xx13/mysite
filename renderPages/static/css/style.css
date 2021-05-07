@@ -37,6 +37,17 @@ h3{
 .click-area input{
     height: 450px;
     padding-top: 35px;
+    transition: 0.3s;
+    opacity: 0.85;
+}
+
+.click-area input:hover{
+    transform: scale(1.05);
+}
+
+.click-area input:active{
+    opacity: 1;
+    transform: scale(1.09);
 }
 
 .click-area{
