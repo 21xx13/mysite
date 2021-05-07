@@ -1,33 +1,108 @@
-header{
-    background-color: darkcyan;
+.header-game{
+    background: url("../images/leaves3.png") 50% 60% no-repeat; 
+    background-size: cover;
     color: white;
-    height: 150px;
-    padding-top: 20px;
+    padding: 40px;
+    height: 12vh;
+    text-align: center;
+    display: flex;
 }
 
-h3{
+.header{
+    background: url("../images/leaves3.png") 50% 60% no-repeat; 
+    background-size: cover;
+    color: white;
+    padding: 20px;
+    height: 12vh;
     text-align: center;
-    vertical-align: middle;
-    
 }
 
 main{
-    margin-top: 50px;
-    margin-bottom: 50px;
+    padding-top: 40px;
+}
+.site-name{
+    font-size: 40px;
+    align-self: center;
+}
+
+h3{
+    vertical-align: middle;
+}
+
+.disabled{
+    background-color: rgb(219, 219, 219);
+    opacity: 0.7;
+}
+
+.click-area input{
+    height: 450px;
+    padding-top: 35px;
+}
+
+.click-area{
+    text-align: center;
+}
+   
+.user-data{
+    border-bottom: 2px solid rgb(199, 199, 199);
+    box-sizing: border-box;
+    background: url("../images/leaves.png") no-repeat; 
+    background-size: cover;
+}
+.user-data-detail{
+    text-align: center;
+    
+    font-size: 20px;   
+}
+#data, #clickPower{
+    font-weight: bold;
+}
+
+.wrapper-page{
+    display: flex;
+    justify-content: space-between;
+    height: 88vh;
 }
 
 .logout{
-    position: relative;
-    text-align:center;
     color: white;
+    margin-left: auto;
+    align-self: center;
 }
 
 .logout a {
     color: rgb(209, 209, 209);
     font-size: larger;
+    text-align: end;
 }
 
 .logout a:hover{
     color: white;
     text-decoration: none;
 }
+.boosts{
+    width: 35%;
+    border-left: 4px solid rgb(160, 160, 160);
+    background: url("../images/leaves2.png") no-repeat; 
+    background-size: cover;
+}
+
+
+.wrapper-main{
+    width: 65%; 
+}
+
+.boosts-list{
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+.boosts-list li{
+    padding: 10px;
+    margin: 0;
+    display: flex;
+    justify-content: space-between;
+    border-top: 2px solid  rgb(199, 199, 199);
+}
+

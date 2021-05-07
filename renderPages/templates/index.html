@@ -9,18 +9,49 @@
     <title>Title </title>
   </head>
   <body onload="getUser({{user.id}})">
-      <header><h3> Welcome, <div id="user">%user%</div></h3>
+      <div class="header-game">
+      <h3 class="site-name">Best Clicker Ever</h3>
       <div class="logout"><a href="/logout">LOGOUT</a></div> 
-      </header>
-     <main>
-      <div align='center'>
-        <h3>You have <div id="data">%coins%</div> coins </h3>
-        <h3>Your power is {{mainCycle.clickPower}}</h3>
-        <input type="image" class="catgirl" src="{% static 'images/cat.png' %}" onclick="callClick()" height="300"/>
-        <input type="image" class="catgirl boost" src="{% static 'images/boost.jpg' %}" onclick="buyBoost()" height="150"/>
       </div>
-      
-    </main>
+     <div class="wrapper-page">
+      <section class="wrapper-main">
+        <div class="user-data">
+          <div align="center"><h3> Добро пожаловать, <span id="user">%user%</span>!</h3></div>
+          <div class="user-data-detail">
+          Coins: <span id="data">%coins%</span>
+          Power: <span id="clickPower">{{mainCycle.clickPower}}</span> 
+          </div>
+        </div>
+        <div class="click-area">
+          <input type="image" src="{% static 'images/raccoon.png' %}" onclick="callClick()"/>
+        </div>
+      </section>
+      <aside class="boosts">
+        <div class="boosts-head" align="center"><h3>Улучшения:</h3></div>
+        <ul class="boosts-list">
+          <li class="boost-item">
+            <div class="wrapper-item">
+              <div class="boost-name"><strong>Коробка печенья</strong></div>
+              <div class="boost-description">Съев печенье, енот станет чуть сильнее. +3 к силе клика.</div>
+              <div class="boost-description">Текущий уровень: <span id="level">0</span></div>
+              <div class="boost-cost">Цена: <span id="price">10</span></div>
+            </div>
+            <input type="image"  src="{% static 'images/coockie.png' %}" onclick="buyBoost({{user.id}})" height="150"/>
+          </li>
+          <li class="boost-item disabled">
+            <div class="wrapper-item ">
+              <div class="boost-name"><strong>Бахни кофейку!</strong></div>
+              <div class="boost-description">Автоклик каждые несколько секунд.</div>
+              <div class="boost-description">Текущий уровень: </div>
+              <div class="boost-cost">Цена: </div>
+              <div><strong>В разработке</strong></div>
+            </div>
+            <input type="image" src="{% static 'images/coffee.png' %}" height="150"/>
+          </li>
+        </ul>
+      </aside>
+     
+    </div>
     
   </body>
 </html>
