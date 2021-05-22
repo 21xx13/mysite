@@ -18,8 +18,9 @@
         <div class="user-data">
           <div align="center"><h3> Добро пожаловать, <span id="user">%user%</span>!</h3></div>
           <div class="user-data-detail">
-          Coins: <span id="data">%coins%</span>
-          Power: <span id="clickPower">{{mainCycle.clickPower}}</span> 
+          Монетки: <span id="data">%coins%</span>
+          Сила клика: <span id="clickPower">{{mainCycle.clickPower}}</span> 
+          Уровень: <span id="player-level">%level%</span> 
           </div>
         </div>
         <div class="click-area">
@@ -28,15 +29,15 @@
       </section>
       <aside class="boosts">
         <div class="boosts-head" align="center"><h3>Улучшения:</h3></div>
-        <ul class="boosts-list">
+        <ul class="boosts-list" id="boost-wrapper">
           <li class="boost-item">
             <div class="wrapper-item">
               <div class="boost-name"><strong>Коробка печенья</strong></div>
-              <div class="boost-description">Съев печенье, енот станет чуть сильнее. +<span id="power">3</span> к силе клика.</div>
-              <div class="boost-description">Текущий уровень: <span id="level">0</span></div>
-              <div class="boost-cost">Цена: <span id="price">10</span></div>
+              <div class="boost-description">Съев печенье, енот станет чуть сильнее. +<span id="power_0">3</span> к силе клика.</div>
+              <div class="boost-description">Текущий уровень: <span id="level_0">0</span></div>
+              <div class="boost-cost">Цена: <span id="price_0">10</span></div>
             </div>
-            <input type="image"  src="{% static 'images/coockie.png' %}" onclick="buyBoost({{user.id}})" height="150"/>
+            <input type="image"  src="{% static 'images/coockie.png' %}" onclick="buyBoost(0)" height="150" />
           </li>
           <li class="boost-item disabled">
             <div class="wrapper-item ">

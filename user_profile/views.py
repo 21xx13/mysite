@@ -4,8 +4,11 @@ from django.contrib.auth import authenticate, login, logout
 from django.http import HttpResponse
 from .forms import UserForm
 from .models import MainCycle, Boost
-from .serializers import UserSerializer, UserSerializerDetail, CycleSerializer, CycleSerializerDetail, BoostSerializer, BoostSerializerDetail
+from .serializers import UserSerializer, UserSerializerDetail, CycleSerializer, CycleSerializerDetail, BoostSerializer
 from rest_framework import generics
+from rest_framework.decorators import api_view
+from rest_framework.response import Response
+import services
 
 class UserList(generics.ListAPIView):
     queryset = User.objects.all()
@@ -24,36 +27,34 @@ class CycleDetail(generics.RetrieveAPIView):
     serializer_class = CycleSerializerDetail
 
 class BoostList(generics.ListAPIView):
-    queryset = Boost.objects.all()
+    queryset = Boost
     serializer_class = BoostSerializer
+    def get_queryset(self):
+        return Boost.objects.filter(mainCycle=self.kwargs['mainCycle'])
 
-class BoostDetail(generics.RetrieveAPIView):
-    queryset = Boost.objects.all()
-    serializer_class = BoostSerializerDetail
-
-def callClick(request):
-    mainCycle = MainCycle.objects.filter(user=request.user)[0]
-    mainCycle.Click()
-    mainCycle.save()
-    return HttpResponse(mainCycle.coinsCount)
-
+@api_view(['POST'])
 def buyBoost(request):
-    mainCycle = MainCycle.objects.filter(user=request.user)[0]
-    boost = Boost()
-    boost.mainCycle = mainCycle
-    boost.Upgrade()
-    boost.save()
-    mainCycle.save()
-    return HttpResponse(mainCycle.clickPower)
+    click_power, coins_count, level, price, power, level_boost, boosts = services.clicker_services.buyBoost(request)
+    return Response({'clickPower': click_power,
+                     'coinsCount': coins_count,
+                     'level': level,
+                     'price': price,
+                     'power': power,
+                     'level_boost': level_boost,
+                     'boosts': boosts})
+
+@api_view(['GET'])
+def callClick(request):
+    data = services.clicker_services.callClick(request)
+    return Response(data)
 
 
-def upgradeBoost(request): 
-    mainCycle = MainCycle.objects.filter(user=request.user)[0] 
-    boost = Boost.objects.filter(mainCycle=mainCycle)[0]
-    boost.mainCycle = mainCycle
-    boost.Upgrade()
-    boost.save()
-    mainCycle.save()
-    return HttpResponse(mainCycle.clickPower)    
 
 
+# def upgradeBoost(request): 
+#     mainCycle = MainCycle.objects.filter(user=request.user)[0] 
+#     boost = Boost.objects.filter(mainCycle=mainCycle)[0]
+#     boost.mainCycle = mainCycle
+#     boost.Upgrade()
+#     boost.save()
+#     return HttpResponse(mainCycle.clickPower)    

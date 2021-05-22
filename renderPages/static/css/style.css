@@ -29,11 +29,6 @@ h3{
     vertical-align: middle;
 }
 
-.disabled{
-    background-color: rgb(219, 219, 219);
-    opacity: 0.7;
-}
-
 .click-area input{
     height: 450px;
     padding-top: 35px;
@@ -65,14 +60,15 @@ h3{
     text-align: center;  
     font-size: 20px;   
 }
-#data, #clickPower{
+#data, #clickPower, #player-level{
     font-weight: bold;
 }
 
 .wrapper-page{
     display: flex;
     justify-content: space-between;
-    height: 88vh;
+    min-height: 88vh;
+    height: auto;
 }
 
 .logout{
@@ -118,6 +114,16 @@ h3{
 }
 
 .boosts-list li:hover{
-    background-color: rgba(255, 255, 255, 0.438);
+    background-color: rgba(255, 255, 255, 0.836);
+}
+
+.disabled{
+    background-color: rgb(219, 219, 219);
+    opacity: 0.7;
+}
+
+.boosts-list .disabled:hover{
+    background-color: rgb(219, 219, 219);
+    opacity: 0.7;
 }
 
