@@ -1,4 +1,3 @@
-from django.shortcuts import render, redirect
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
 from user_profile.forms import UserForm
@@ -27,10 +26,10 @@ def user_registration(request):
         form = UserForm(request.POST)
         if form.is_valid():
             user = form.save()
-            mainCycle = MainCycle()
-            boost = Boost(mainCycle = mainCycle, level = 0)
-            mainCycle.user = user
-            mainCycle.save()
+            main_cycle = MainCycle()
+            boost = Boost(mainCycle = main_cycle, level = 0)
+            main_cycle.user = user
+            main_cycle.save()
             boost.save()
             user = authenticate(request, username=request.POST['username'], password=request.POST['password'])
             login(request, user)

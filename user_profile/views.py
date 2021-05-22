@@ -1,8 +1,4 @@
-from django.shortcuts import render, redirect
 from django.contrib.auth.models import User
-from django.contrib.auth import authenticate, login, logout
-from django.http import HttpResponse
-from .forms import UserForm
 from .models import MainCycle, Boost
 from .serializers import UserSerializer, UserSerializerDetail, CycleSerializer, CycleSerializerDetail, BoostSerializer
 from rest_framework import generics
@@ -33,7 +29,7 @@ class BoostList(generics.ListAPIView):
         return Boost.objects.filter(mainCycle=self.kwargs['mainCycle'])
 
 @api_view(['POST'])
-def buyBoost(request):
+def buy_boost(request):
     click_power, coins_count, level, price, power, level_boost, boosts = services.clicker_services.buyBoost(request)
     return Response({'clickPower': click_power,
                      'coinsCount': coins_count,
@@ -44,17 +40,7 @@ def buyBoost(request):
                      'boosts': boosts})
 
 @api_view(['GET'])
-def callClick(request):
+def call_click(request):
     data = services.clicker_services.callClick(request)
     return Response(data)
-
-
-
-
-# def upgradeBoost(request): 
-#     mainCycle = MainCycle.objects.filter(user=request.user)[0] 
-#     boost = Boost.objects.filter(mainCycle=mainCycle)[0]
-#     boost.mainCycle = mainCycle
-#     boost.Upgrade()
-#     boost.save()
-#     return HttpResponse(mainCycle.clickPower)    
+  

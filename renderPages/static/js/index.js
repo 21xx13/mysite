@@ -86,6 +86,7 @@ function renderBoosts(boosts){
 }
 
 function renderBoost(parent, boost){
+
   const li = document.createElement('li');
   li.setAttribute('class', 'boost-item');
   if (+document.getElementById("data").innerHTML < boost.price)
@@ -93,12 +94,12 @@ function renderBoost(parent, boost){
   li.setAttribute('id', `boost-item-${boost.level}`);
   li.innerHTML = `
     <div class="wrapper-item">
-      <div class="boost-name"><strong>${boosts_front[boost.level % 5][0]}</strong></div>
-      <div class="boost-description">${boosts_front[boost.level % 5][1]} +<span id="power_${boost.level}">${boost.power}</span> к силе клика.</div>
+      <div class="boost-name"><strong>${boosts_front[boost.level % boosts_front.length][0]}</strong></div>
+      <div class="boost-description">${boosts_front[boost.level % boosts_front.length][1]} +<span id="power_${boost.level}">${boost.power}</span> к силе клика.</div>
       <div class="boost-description">Текущий уровень: <span id="level_${boost.level}">${boost.level_boost}</span></div>
       <div class="boost-cost">Цена: <span id="price_${boost.level}">${boost.price}</span></div>
       </div>
-      <input type="image"  src="${boosts_front[boost.level % 5][2]}" onclick="buyBoost(${boost.level})" height="150""/>
+      <input type="image"  src="${boosts_front[boost.level % boosts_front.length][2]}" onclick="buyBoost(${boost.level})" height="150""/>
   `;
   parent.appendChild(li);
  }

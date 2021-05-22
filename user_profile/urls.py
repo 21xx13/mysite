@@ -7,6 +7,6 @@ urlpatterns = [
     path('cycles/', views.CycleList.as_view()),
     path('cycles/<int:pk>/', views.CycleDetail.as_view()),
     path('boosts/<int:mainCycle>/', views.BoostList.as_view()),
-    path('click/', views.callClick, name="click"),
-    path('buyBoost/', views.buyBoost, name="buyBoost"),
+    path('click/', views.call_click, name="click"),
+    path('buyBoost/', views.buy_boost, name="buyBoost"),
 ]

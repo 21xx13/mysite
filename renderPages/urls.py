@@ -1,6 +1,5 @@
 from django.urls import path
 from . import views
-from user_profile import views as user_profile_views
 
 urlpatterns = [
     path('', views.index, name="index"),

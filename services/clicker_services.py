@@ -1,8 +1,5 @@
 from django.contrib.auth.models import User
-from rest_framework.decorators import api_view
-from rest_framework.response import Response
 from user_profile.models import MainCycle, Boost
-from rest_framework import generics
 from user_profile.serializers import UserSerializer, UserSerializerDetail, CycleSerializer, CycleSerializerDetail, BoostSerializer
 
 
