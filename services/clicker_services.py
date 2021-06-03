@@ -27,9 +27,9 @@ def buyBoost(request):
     cycle = MainCycle.objects.get(user=request.user)
     boosts_query = Boost.objects.filter(mainCycle=cycle)   
     boost = Boost.objects.get_or_create(mainCycle=cycle, level=boost_level)[0]   
-    click_power, coins_count, level, price, power, level_boost = boost.upgrade()
+    main_cycle, level, price, power, level_boost = boost.upgrade()
     boost.save()
     boosts = BoostSerializer(boosts_query, many=True).data
-    return (click_power, coins_count, level, price, power, level_boost, boosts)
+    return (main_cycle, level, price, power, level_boost, boosts)
 
 

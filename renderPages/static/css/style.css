@@ -60,7 +60,7 @@ h3{
     text-align: center;  
     font-size: 20px;   
 }
-#data, #clickPower, #player-level{
+#data, #clickPower, #player-level, #autoClickPower{
     font-weight: bold;
 }
 
@@ -68,7 +68,7 @@ h3{
     display: flex;
     justify-content: space-between;
     min-height: 88vh;
-    height: auto;
+    
 }
 
 .logout{
@@ -91,7 +91,8 @@ h3{
     width: 35%;
     border-left: 4px solid rgb(160, 160, 160);
     background: url("../images/leaves2.png") no-repeat; 
-    background-size: cover;
+    overflow-y: scroll;
+    height: 88vh;
 }
 
 
@@ -103,6 +104,7 @@ h3{
     list-style-type: none;
     padding: 0;
     margin: 0;
+    
 }
 
 .boosts-list li{
@@ -111,19 +113,30 @@ h3{
     display: flex;
     justify-content: space-between;
     border-top: 2px solid  rgb(199, 199, 199);
+    background-image: url("../images/leaves2.png"); 
+    background-size: cover;
 }
 
 .boosts-list li:hover{
     background-color: rgba(255, 255, 255, 0.836);
+    background-image: none;
 }
 
-.disabled{
-    background-color: rgb(219, 219, 219);
-    opacity: 0.7;
-}
+
 
 .boosts-list .disabled:hover{
     background-color: rgb(219, 219, 219);
     opacity: 0.7;
+}
+
+.boosts-list .autoClick{
+    background-color: rgb(223, 255, 255);
+    background-image: none;
+}
+
+.boosts-list .disabled{
+    background-color: rgb(219, 219, 219);
+    opacity: 0.7;
+    background-image: none;
 }
 

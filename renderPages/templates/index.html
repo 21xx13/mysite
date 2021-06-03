@@ -6,7 +6,7 @@
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <meta charset="utf-8">
-    <title>Title </title>
+    <title>Raccoon Clicker</title>
   </head>
   <body onload="getUser({{user.id}})">
       <div class="header-game">
@@ -21,6 +21,7 @@
           Монетки: <span id="data">%coins%</span>
           Сила клика: <span id="clickPower">{{mainCycle.clickPower}}</span> 
           Уровень: <span id="player-level">%level%</span> 
+          Автоклик <span id="autoClickPower"> {{mainCycle.autoClickPower}} </span> монет/сек
           </div>
         </div>
         <div class="click-area">
@@ -38,16 +39,6 @@
               <div class="boost-cost">Цена: <span id="price_0">10</span></div>
             </div>
             <input type="image"  src="{% static 'images/coockie.png' %}" onclick="buyBoost(0)" height="150" />
-          </li>
-          <li class="boost-item disabled">
-            <div class="wrapper-item ">
-              <div class="boost-name"><strong>Бахни кофейку!</strong></div>
-              <div class="boost-description">Автоклик каждые несколько секунд.</div>
-              <div class="boost-description">Текущий уровень: </div>
-              <div class="boost-cost">Цена: </div>
-              <div><strong>В разработке</strong></div>
-            </div>
-            <input type="image" src="{% static 'images/coffee.png' %}" height="150"/>
           </li>
         </ul>
       </aside>
